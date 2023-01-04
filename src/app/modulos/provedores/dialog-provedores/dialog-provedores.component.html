@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>Añadir Provedor</h1>
+<div mat-dialog-content>
+
+  <form class="example-form" [formGroup]="provedorForm" >
+
+  <mat-form-field class="example-full-width" [hidden]="oculto">
+    <mat-label>Selecciona un Provedor</mat-label>
+    <mat-select [(value)]="selected"  formControlName="provedor" >
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let item of provedoresMistral; let i = index" value="{{item.DESCRIPCION}}">{{item.DESCRIPCION}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <mat-label>Código del provedor</mat-label>
+    <input matInput formControlName="codeAux" >
+
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <mat-label>Nombre del provedor</mat-label>
+    <input matInput formControlName="nombre">
+
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <mat-label>Dirección</mat-label>
+    <input matInput formControlName="direccion">
+
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <mat-label>Provincia</mat-label>
+    <input matInput formControlName="provincia">
+
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <mat-label>Municipio</mat-label>
+    <input matInput formControlName="municipio">
+
+  </mat-form-field>
+
+  <mat-form-field class="example-form">
+    <mat-label>Correo</mat-label>
+    <input matInput placeholder="correo@dominio.com" formControlName="email">
+
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" >
+    <mat-label>Teléfono</mat-label>
+    <input matInput formControlName="telefono">
+
+  </mat-form-field>
+
+
+<mat-form-field class="example-full-width">
+<mat-label>Observaciónes</mat-label>
+<textarea matInput placeholder="Ej. El provedor..." formControlName="observaciones"></textarea>
+</mat-form-field>
+
+</form>
+
+</div>
+
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+  <button mat-raised-button color="primary" (click)= "addProvedor()">{{actionBoton}}</button>
+</div>
+
+
+{{getprovedorMistral()}}

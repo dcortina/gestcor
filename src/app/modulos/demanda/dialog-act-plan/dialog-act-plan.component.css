@@ -1,0 +1,39 @@
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-container{
+    width: 100%;
+  }
+
+
+  
+  .example-container form {
+    margin-bottom: 20px;
+  }
+  
+  .example-container form > * {
+    margin: 12px 0;
+  }
+  
+  .example-container .mat-radio-button {
+    margin: 0 12px;
+  }
+  
+  .codigoOriginal{
+    width: 7%;
+  }
+
+  .descripcion{
+    width: 70%;
+  }
+
+  .referencia{
+    width: 13%;;
+  }
+
+  .plan{
+  
+    width: 7%;
+    
+  }

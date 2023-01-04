@@ -1,0 +1,80 @@
+mat-card-header {
+  margin: auto;
+  text-align: center;
+  margin-left: 60px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+mat-card{
+  width: 35%;
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-column-name {
+  padding-left: 10px;
+  width: 180px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.mat-column-carnet {
+  padding-left: 10px;
+  width: 50px;
+  text-align: center;
+
+}
+
+.mat-column-cargo {
+  padding-left: 10px;
+  width: 230px;
+  font-style: italic;
+}
+
+.mat-column-email {
+  padding-left: 10px;
+  width: 20px;
+   font-size: 14px;
+  font-style: italic;
+
+}
+
+.mat-column-profile {
+  padding-left: 10px;
+  width: 30px;
+  text-align: center;
+
+}
+
+.mat-column-created_at {
+  padding-left: 10px;
+  width: 80px;
+  text-align: center;
+
+}
+
+.mat-column-editar {
+  width: 40px;
+  text-align: center;
+
+}
+
+.mat-column-eliminar {
+  width: 40px;
+  text-align: center;
+
+}
+
+

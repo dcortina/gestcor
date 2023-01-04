@@ -1,0 +1,67 @@
+.content{
+  background: #eee;
+  width: 100%;
+  height: 100%;
+}
+.hgroup{
+  text-align: center;
+  margin-top: 4em;
+
+}
+
+h1,h3{font-weight: 300;}
+h1{color: #636363;}
+h3{color: #4a89dc;}
+
+
+
+ mat-card-header{
+
+  margin-left: 35%;
+
+
+}
+
+
+
+
+.example-form {
+  min-width: 150px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 25px;
+
+}
+
+mat-card{
+  width: 35%;
+  padding: 3em 2em 2em 2em;
+  background: #fafafa;
+  border:  1px solid #ebebeb;
+
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+footer{text-align: center;}
+
+footer p{
+  color: #888;
+  font-size: 13px;
+  letter-spacing: .4px;
+
+}
+
+footer img{
+  width: 80px;
+  transition: all .2s ease;
+}
+footer img:hover{
+  opacity: .83;
+}
+
+footer img:focus{outline: none;}
+
+

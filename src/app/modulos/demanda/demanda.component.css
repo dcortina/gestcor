@@ -1,0 +1,146 @@
+
+.prueba{
+    width: 100%;
+
+}
+
+table{
+    width: 100%;
+}
+
+.mat-column-referencia {
+  width: 6%;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.mat-column-descripcion {
+
+  width: 30%;
+  font-style: italic;
+
+}
+
+
+.mat-column-cantidad {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-diasAbastecidos {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-cobertura {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-ultimaEntrada {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-cantidadUltimaEntrada {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-acumuladoAunual {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-planMes {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-planAnual {
+  width: 7%;
+  text-align: center;
+
+}
+
+.mat-column-cumPlan {
+  width: 7%;
+  text-align: center;
+
+}
+
+.boton{
+    margin-bottom: 20px;
+}
+
+.botonPlan{
+  margin-left: 80%;
+}
+
+
+.texto{
+  color: rgba(74, 74, 74, .5);
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 54px;
+  width: 100%;
+  margin-bottom: 50px;
+
+}
+
+.icono{
+
+  margin: auto;
+  text-align: center;
+  width: 250px;
+  height: 250px;
+  font-size: 250px;
+  color: rgba(74, 74, 74, .5);
+
+}
+
+.tarjetas{
+
+  width: 20%;
+
+  margin-left: 1%;
+
+  background: rgb(73, 127, 207);
+  background: linear-gradient(90deg, rgba(36,124,255,1)36%, rgba(0,212,255,1)100%);
+  opacity: .7;
+
+}
+.tarjetas::before{
+  content: "\F05B";
+  font-family: "Material Icons";
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  font-size: 90px;
+  opacity: .1;
+}
+
+h4{
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 10px;
+  width: 180px;
+}
+
+.valor{
+  font-size: 3rem;
+  color: #fff;
+
+
+
+ }

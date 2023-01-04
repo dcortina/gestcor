@@ -1,0 +1,64 @@
+<div class="content">
+<mat-grid-list cols="1" rowHeight="180px">
+
+  <mat-grid-tile [colspan]= "1" [rowspan]="1">
+  <div class="hgroup">
+    <h1>GESTCOR</h1>
+    <h3>Sistema para La Gestión Comercial</h3>
+  </div>
+</mat-grid-tile>
+
+  <mat-grid-tile [colspan]= "1" [rowspan]="2">
+
+
+  <mat-card>
+
+    <mat-card-header>
+      <mat-card-title class="title">Ingresar</mat-card-title>
+
+  </mat-card-header>
+
+           <form class="example-form" (ngSubmit)="submit()" [formGroup]="form">
+
+
+            <mat-form-field class="example-form">
+              <mat-label>Correo</mat-label>
+              <input matInput placeholder="correo@dominio.com" formControlName="email" required>
+              <mat-error *ngIf="f.email.invalid">Debes ingresar una direccion de correo</mat-error>
+            </mat-form-field>
+
+
+
+    <mat-form-field class="example-form">
+      <mat-label>Contraseña</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="f.password.invalid">La contraseña no cumple con los requisitos</mat-error>
+    </mat-form-field>
+
+
+
+
+          <button mat-button mat-flat-button color="primary" style="display: block; width: 100%; margin-top: 15px;">Ingresar</button>
+
+
+          </form>
+
+
+
+  </mat-card>
+</mat-grid-tile>
+
+
+</mat-grid-list>
+
+<footer>
+  <img src="../../../assets/logo.png" alt="EMCOMED">
+  <p>Las Tunas</p>
+</footer>
+
+
+</div>
+

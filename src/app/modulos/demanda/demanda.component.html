@@ -1,0 +1,142 @@
+
+<div class="row row-cols-2">
+
+<mat-form-field appearance="fill" class="prueba">
+    <mat-label>Selecciona la línea de medicamento deseada</mat-label>
+    <mat-select [(value)]="selected" >
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let lineaProducto of lineaProductos" value="{{lineaProducto.linea_id}}">{{lineaProducto.descripcion}}</mat-option>
+      <mat-option>Todos</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="col"><button mat-raised-button color="warn" class="boton" (click)="obtenerProductosPorLinea()">Mostrar Productos</button></div>
+
+</div>
+
+<div class="row">
+
+  <ng-template [ngIf]="vacio" [ngIfElse]="datos">
+
+    <div class="row">
+       <mat-card class="tarjetas">
+          <h4><strong>Productos sin Establecer Plan de Ventas</strong></h4>
+          <span class="valor"><strong>{{productoPlan |  number:'1.0'}}</strong>  </span>
+
+      </mat-card>
+
+    </div>
+
+<br>
+    <div class="row mt-4">
+      <div class="col"><button mat-flat-button class="botonPlan" *ngIf="perfil" (click)="actProductosSinPlan()">Actualizar Productos Sin Plan</button></div>
+
+    </div>
+
+
+    <div class="row">
+      <mat-form-field appearance="standard" style="width:100% ;">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Ena.." #input>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="productos" matSort>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="referencia">
+          <th mat-header-cell *matHeaderCellDef> Código </th>
+          <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="cantidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Existencia en almacén </th>
+          <td mat-cell *matCellDef="let element"> {{element.cantidad | number}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="diasAbastecidos">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Dias Abastecidos </th>
+          <td mat-cell *matCellDef="let element"> {{element.diasAbastecidos | number:'1.0-0'}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+         <ng-container matColumnDef="cobertura">
+           <th mat-header-cell *matHeaderCellDef mat-sort-header> Situación </th>
+           <td mat-cell *matCellDef="let element"> {{element.cobertura}} </td>
+         </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="ultimaEntrada">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Última Entrada </th>
+          <td mat-cell *matCellDef="let element"> {{element.ultimaEntrada | date}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="cantidadUltimaEntrada">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad recepcionada </th>
+          <td mat-cell *matCellDef="let element"> {{element.cantidadUltimaEntrada | number}} </td>
+        </ng-container>
+
+         <!-- Weight Column -->
+         <ng-container matColumnDef="acumuladoAunual">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Acumulado en el año </th>
+          <td mat-cell *matCellDef="let element"> {{element.acumuladoAunual | number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="planMes">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Plan Mes </th>
+          <td mat-cell *matCellDef="let element"> {{element.planMes | number:'1.0-0'}} </td>
+        </ng-container>
+
+         <!-- Weight Column -->
+         <ng-container matColumnDef="planAnual">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Plan Anual </th>
+          <td mat-cell *matCellDef="let element"> {{element.planAnual | number}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cumPlan">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Cumplimiento del Plan </th>
+          <td mat-cell *matCellDef="let element"> {{element.cumPlan | number}} % </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+      </table>
+
+      <mat-paginator #productoPaginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Selecciona la página">
+  </mat-paginator>
+
+      </div>
+
+      </div>
+
+</ng-template>
+
+<ng-template #datos>
+  <div class="row">
+
+  <h1 class="texto" >No hay datos para mostrar</h1>
+  </div>
+  <div class="row">
+  <mat-icon class="icono">sentiment_dissatisfied</mat-icon>
+
+</div>
+
+
+</ng-template>
+
+</div>

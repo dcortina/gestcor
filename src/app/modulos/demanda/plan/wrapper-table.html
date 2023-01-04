@@ -1,0 +1,12 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-content></ng-content>
+  
+ 
+    <!-- Weight Column -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+      <td mat-cell *matCellDef="let element"> {{element.cantidad | number:'1.0-0'}} </td>
+    </ng-container>
+  
+
+  </table>

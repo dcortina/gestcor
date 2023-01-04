@@ -1,0 +1,72 @@
+<div>
+  <app-grafico-area></app-grafico-area>
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+<br>
+<h2>Últimas Entradas</h2>
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
+
+  <mat-card  style="margin:10px; width: 23%;" *ngFor="let ultimaEntrada of ultimasEntradas; index as i">
+
+  <app-grafico-tarjetas [label]="ultimaEntrada.descripcion" [total]="ultimaEntrada.cantidad | number" percentage="{{ultimaEntrada.cumPlan | number:'1.0-0'}} %" [cantidades]="ultimasCantidades[i]"></app-grafico-tarjetas>
+
+
+
+</mat-card>
+
+</div>
+
+<br>
+
+<mat-divider></mat-divider>
+
+<br>
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+  <div class="productosTittle" fxFlex="60">
+
+    <h2 >Productos mas Vendidos</h2>
+
+    <table mat-table [dataSource]="masVendidos">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="referencia">
+        <th mat-header-cell *matHeaderCellDef> Código </th>
+        <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripción</th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="masVendido">
+        <th mat-header-cell *matHeaderCellDef> Cantidad Vendida </th>
+        <td mat-cell *matCellDef="let element"> {{element.masVendido}} </td>
+      </ng-container>
+    
+   
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+  </div>
+
+  <div fxFlex="40">
+
+    <app-grafico-pizza></app-grafico-pizza>
+
+  </div>
+
+</div>
+
+

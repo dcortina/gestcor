@@ -1,0 +1,75 @@
+
+<mat-sidenav-container class="sidenav-container">
+
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+      
+    <mat-toolbar>Menu</mat-toolbar>
+    
+    <mat-nav-list>
+      <a mat-list-item (click)="setRouteInicio()"><mat-icon color="primary" class="icono" >home</mat-icon> Inicio</a>
+      <a mat-list-item (click)="setRouteProducto()"><mat-icon color="primary" class="icono">inventory_2</mat-icon> Almacén Productos</a>
+      <a mat-list-item (click)="setRouteProvedores()"><mat-icon color="primary" class="icono">contact_page</mat-icon> Listado de Provedores</a>
+      <a mat-list-item (click)="setRouteEntradas()"><mat-icon color="primary" class="icono">local_shipping</mat-icon> Entradas</a>
+
+      <a mat-list-item [matMenuTriggerFor]="consumos"><mat-icon color="primary" class="icono">store</mat-icon> Centro de Consumos <mat-icon>arrow_forward_ios</mat-icon></a>
+      
+
+    <mat-menu #consumos="matMenu" yPosition="below" xPosition="before">
+
+      <button mat-menu-item (click)="setRoutePlan()">Plan Anual</button>
+
+    </mat-menu>
+
+      <a mat-list-item [matMenuTriggerFor]="demanda"><mat-icon color="primary" class="icono">local_pharmacy</mat-icon>Demanda</a>
+
+      <mat-menu #demanda="matMenu" yPosition="below" xPosition="before">
+
+        <button mat-menu-item (click)="setRouteDemanda()" >Medicamentos</button>
+        <button mat-menu-item (click)="setRouteDemandaPlan()" >Plan Anual</button>
+  
+      </mat-menu>
+
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row class="mat-elevation-z6">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>GESTCOR</span>
+      <span class="example-spacer"></span>
+      <button mat-button [matMenuTriggerFor]="menu">{{user}}</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Perfil</button>
+        <button mat-menu-item routerLink="registrar">Registrar Usuario</button>
+        <button mat-menu-item (click)="logout()">Salir</button>
+      </mat-menu>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <span>{{subtitulo}}</span>
+      <span class="example-spacer"></span>
+
+
+    </mat-toolbar-row>
+
+    </mat-toolbar>
+     <!--Add Content Here -->
+
+<div class="container" style="margin-top:20px ;">
+
+<router-outlet></router-outlet>
+</div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

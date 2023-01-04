@@ -1,0 +1,214 @@
+
+table{
+    width: 100%;
+
+  }
+
+  .example-container{
+    height: 400px;
+    overflow: auto;
+
+  }
+
+  .mat-column-codigoOriginal {
+       width: 10px;
+    padding-right: 1px;
+    text-align: center;
+  }
+
+
+  .mat-column-descripcion {
+    padding-left: 16px;
+    width: 320px;
+  }
+
+  .mat-column-precio {
+
+    width: 50px;
+    text-align: center;
+  }
+
+  .mat-column-cantidad {
+
+    width: 50px;
+    text-align: center;
+  }
+
+  .mat-column-importe {
+
+    width: 50px;
+    text-align: center;
+  }
+
+  .mat-column-vendido {
+
+    width: 50px;
+    text-align: center;
+  }
+
+  .mat-column-importeVendido {
+
+    width: 50px;
+    text-align: center;
+  }
+
+  tr.example-detail-row {
+    height: 0;
+  }
+
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+
+  .example-element-detail {
+    overflow: hidden;
+
+
+  }
+
+
+
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+
+  .paraOpcion{
+
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+
+  }
+
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
+
+  .mat-table-sticky {
+    border-top: 1px solid #e0e0e0;
+  }
+
+
+
+.botones{
+  margin-left: 90%;
+  margin-top: -5px;
+  }
+
+  .tarjetas{
+
+    width: 24%;
+    height: 140px;
+    margin-left: 10px;
+    background: rgb(73, 127, 207);
+    background: linear-gradient(90deg, rgba(36,124,255,1)36%, rgba(0,212,255,1)100%);
+
+  }
+  .tarjetas::before{
+    content: "\F05B";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    font-size: 140px;
+    opacity: .1;
+  }
+
+  .tarjetas1{
+
+    width: 24%;
+    height: 140px;
+    margin-left: 10px;
+    background: rgb(73, 127, 207);
+    background: linear-gradient(90deg, rgba(36,124,255,1)36%, rgba(0,212,255,1)100%);
+
+  }
+  .tarjetas1::before{
+    content: "\E227";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 45%;
+    left: 40%;
+    font-size: 160px;
+    opacity: .1;
+  }
+
+  .tarjetas2{
+
+    width: 24%;
+    height: 140px;
+    margin-left: 10px;
+    background: rgb(73, 127, 207);
+    background: linear-gradient(90deg, rgba(36,124,255,1)36%, rgba(0,212,255,1)100%);
+
+  }
+  .tarjetas2::before{
+    content: "\E8d1";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 45%;
+    left: 40%;
+    font-size: 160px;
+    opacity: .1;
+  }
+
+  .tarjetas3{
+
+    width: 24%;
+    height: 140px;
+    margin-left: 10px;
+    background: rgb(73, 127, 207);
+    background: linear-gradient(90deg, rgba(36,124,255,1)36%, rgba(0,212,255,1)100%);
+
+  }
+  .tarjetas3::before{
+    content: "\EF6E";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    font-size: 140px;
+    opacity: .1;
+  }
+
+
+  h4{
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+
+ .codec{
+  font-size: 12px;
+  color: #fff;
+
+ }
+
+ .valor{
+  font-size: 2rem;
+  color: #fff;
+
+ }
+
+
+ .valor1{
+  font-size: 2rem;
+  color: #fff;
+
+ }
+
+ .valor2{
+  font-size: 2rem;
+  color: #fff;
+
+ }

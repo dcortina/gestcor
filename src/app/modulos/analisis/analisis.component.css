@@ -1,0 +1,58 @@
+.tarjetas{
+
+    width: 34%;
+    height: 130px;
+    margin-left: 30%;
+    background: rgb(73, 127, 207);
+    background: linear-gradient(90deg, rgba(36,124,255,1)36%, rgba(0,212,255,1)100%);
+
+  }
+  .tarjetas::before{
+    content: "\F05B";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    font-size: 140px;
+    opacity: .1;
+  }
+
+  h4{
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 3px;
+  }
+
+  h1{
+    font-size: 44px;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+
+   }
+
+   table {
+    width: 100%;
+  }
+
+  .mat-column-referencia {
+    width: 32px;
+    padding-right: 15px;
+    text-align: center;
+  
+  }
+
+  .mat-column-descripcion {
+
+    width: 300px;
+    font-style: italic;
+  }
+
+  
+.mat-column-importe {
+    width: 80px;
+    text-align: center;
+  
+  }

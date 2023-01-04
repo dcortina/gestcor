@@ -1,0 +1,71 @@
+<mat-card class="tarjetas">
+
+    <div class="text">
+
+      <h4><strong>Importe Total en Ventas</strong></h4>
+      <mat-divider></mat-divider>
+       <h1><strong>{{importeTotal |  number:'1.0'}}</strong></h1>
+      <br>
+    </div>
+
+  </mat-card>
+
+
+<br>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+
+<div fxFlex="60">
+    <h2>Productos Con mayor Impacto Según Importe</h2>
+
+    <mat-form-field appearance="standard" style="width:100% ;">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+  
+      <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="productosMasImporte" matSort>
+  
+        <ng-container matColumnDef="referencia">
+          <th mat-header-cell *matHeaderCellDef> Código</th>
+          <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+        </ng-container>
+  
+  
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+          <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="importe">
+          <th mat-header-cell *matHeaderCellDef> Importe </th>
+          <td mat-cell *matCellDef="let element"> {{element.importe |number}} </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+      </table>
+  
+      <mat-paginator #provedorPaginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Selecciona la página">
+  </mat-paginator>
+
+</div>
+
+</div>
+
+<div fxFlex="40">
+
+  <highcharts-chart
+  *ngIf="chartOptions"
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+  style="width: 100%;display: block">
+</highcharts-chart>
+
+</div>
+
+
+</div>

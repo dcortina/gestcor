@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+  }
+
+.mat-column-referencia {
+    width: 32px;
+    padding-right: 15px;
+    text-align: center;
+  
+  }
+
+  .mat-column-descripcion {
+
+    width: 300px;
+    font-style: italic;
+  }
+
+  
+.mat-column-masVendido {
+    width: 80px;
+    text-align: center;
+  
+  }
+
+  .productosTittle{
+    margin-bottom: 60px;
+  }

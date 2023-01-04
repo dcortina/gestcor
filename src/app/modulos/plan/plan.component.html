@@ -1,0 +1,202 @@
+
+<br>
+
+<div class="row">
+
+  <mat-card class="tarjetas">
+
+    <div class="text" *ngFor="let producto of productoMasVendido">
+
+      <h4><strong>Producto Con Mayor Venta</strong></h4>
+      <mat-divider></mat-divider>
+      <p class="codec">{{producto.REFERENCIA}} - {{producto.DESCRIPCION}}</p>
+      <span class="valor"><strong>{{producto.masVendido |  number:'1.0'}}</strong></span>
+      <br>
+    </div>
+
+  </mat-card>
+
+
+
+  <mat-card class="tarjetas1">
+
+    <div class="text" *ngFor="let producto of productoMayorImporte">
+      <h4><strong>Producto Con Mayor Importe</strong></h4>
+      <mat-divider></mat-divider>
+      <p class="codec">{{producto.REFERENCIA}} - {{producto.DESCRIPCION}}</p>
+      <span class="valor1"><strong>{{producto.mayorImporte|number}}</strong></span>
+      <br>
+
+    </div>
+
+  </mat-card>
+
+  <mat-card class="tarjetas2">
+
+    <div class="text" *ngFor="let producto of unidadActiva">
+      <h4><strong>Unidad Con Mas ventas</strong></h4>
+      <mat-divider></mat-divider>
+      <p class="codec">{{producto.DESCRIPCION}}</p>
+      <span class="valor"><strong>{{producto.mayorImporte|number}}</strong></span>
+      <br>
+
+    </div>
+
+  </mat-card>
+
+  <mat-card class="tarjetas3">
+    <div class="text" *ngFor="let producto of unidadCompra">
+      <h4><strong>Unidad Con Mas Importe</strong></h4>
+      <mat-divider></mat-divider>
+      <p class="codec">{{producto.REFERENCIA}} - {{producto.DESCRIPCION}}</p>
+      <span class="valor2"><strong>{{producto.mayorImporte|number}}</strong></span>
+      <br>
+
+    </div>
+
+  </mat-card>
+
+
+</div>
+
+<br>
+
+
+
+<div class="row">
+
+
+    <mat-form-field appearance="standard">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Enlalapril" #input>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+
+<table mat-table [dataSource]="unidades" multiTemplateDataRows>
+
+    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}}</td>
+
+    </ng-container>
+
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef> Ver Productos </th>
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+
+      <td mat-cell *matCellDef="let element">
+
+        <button mat-icon-button aria-label="expand row"  (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+          <mat-icon *ngIf="expandedElement !== element" (click)="obtenerConsumos(element)">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+        </button>
+
+      </td>
+     </ng-container>
+
+
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container matColumnDef="expandedDetail">
+
+         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+
+
+
+        <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+
+               <!--
+          <div class="example-element-description">
+
+            <span class="example-element-description-attribution">
+              <div class="example-element-name"></div>
+              <div class="example-element-name"> </div>
+              <div class="example-element-name"> </div>
+
+            </span>
+
+          </div>
+          -->
+          <mat-form-field appearance="standard" style="width:100% ;">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="applyFilterConsumos($event)" placeholder="Ej. Ena.." #input>
+          </mat-form-field>
+
+          <div class="botones">
+            <button mat-icon-button (click)="getProductosExcel()" color="primary" [disabled]="botonExcel" class="icono"><mat-icon>download</mat-icon>Descargar</button>
+          </div>
+
+          <section class="example-container" tabindex="0">
+            <table mat-table [dataSource]="consumos">
+
+              <ng-container matColumnDef="descripcion">
+                <th mat-header-cell *matHeaderCellDef> Descripcion del Producto </th>
+                <td mat-cell *matCellDef="let element"> {{element.descripcion}} </td>
+                <td mat-footer-cell *matFooterCellDef> Total </td>
+              </ng-container>
+
+              <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef> Precio del Producto </th>
+                <td mat-cell *matCellDef="let element"> {{element.precio | currency:'$'}} </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+
+              <ng-container matColumnDef="cantidad">
+                <th mat-header-cell *matHeaderCellDef> Plán Anual </th>
+                <td mat-cell *matCellDef="let element"> {{element.cantidad | number}} </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+
+              <ng-container matColumnDef="importe">
+                <th mat-header-cell *matHeaderCellDef> Importe Total Según Plan </th>
+                <td mat-cell *matCellDef="let element"> {{element.importe | currency:'$'}} </td>
+                <td mat-footer-cell *matFooterCellDef> {{total | currency:'$'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vendido">
+                <th mat-header-cell *matHeaderCellDef> Vendido</th>
+                <td mat-cell *matCellDef="let element">{{element.vendido | number}} </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+              </ng-container>
+
+              <ng-container matColumnDef="importeVendido">
+                <th mat-header-cell *matHeaderCellDef> Importe Total según Venta</th>
+                <td mat-cell *matCellDef="let element"> {{element.importeVendido | currency:'$'}} </td>
+                <td mat-footer-cell *matFooterCellDef> {{totalVendido | currency:'$'}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+
+
+            </table>
+          </section>
+
+
+
+  </div>
+
+
+
+
+
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element" (click)="obtenerConsumos(element)">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>
+
+</div>
+    </div>
+
+

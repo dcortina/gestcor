@@ -1,0 +1,41 @@
+<mat-nav-list>
+  <div class="menu-card">
+    <div class="header">
+
+      <h4>Sistema para la gestión de Medicamentos</h4>
+    </div>
+    <img src="../../../assets/logo.png" alt="EMCOMED">
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader>Gestión de Entradas</h2>
+
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="inicio"><mat-icon color="primary" class="icono" >home</mat-icon>Inicio</a>
+  <!--
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="productos"><mat-icon color="primary" class="icono">inventory_2</mat-icon>Almacén de Productos</a>
+   -->
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="provedores" *ngIf="perfil"><mat-icon color="primary" class="icono">contact_page</mat-icon>Entrada de Provedores</a>
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="entradas" *ngIf="perfil"><mat-icon color="primary" class="icono">local_shipping</mat-icon>Entrada de Productos</a>
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="consumos"><mat-icon color="primary" class="icono">store</mat-icon>Gestión de Consumos</a>
+  <mat-divider></mat-divider>
+  <h2 matSubheader>Gestión de la Demanda</h2>
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="demanda"><mat-icon color="primary" class="icono">local_pharmacy</mat-icon>Medicamentos</a>
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="plan" *ngIf="perfil"><mat-icon color="primary" class="icono">folder</mat-icon>Plan Anual</a>
+  <mat-divider></mat-divider>
+
+
+  <h2 matSubheader>Stock</h2>
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="precios" *ngIf="perfil"><mat-icon color="primary" class="icono">medical_information</mat-icon>Comparar Produtos</a>
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="conduce" *ngIf="perfil"><mat-icon color="primary" class="icono">post_add</mat-icon>Generar Conduce</a>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Análisis</h2>
+
+  <a mat-list-item  routerlinkActive="list-item-active" routerLink="analisis"><mat-icon color="primary" class="icono">real_estate_agent</mat-icon>Inventarios</a>
+
+  <mat-divider></mat-divider>
+
+
+
+</mat-nav-list>
+

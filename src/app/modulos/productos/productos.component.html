@@ -1,0 +1,133 @@
+<div class="row row-cols-2">
+  <div class="col-md-4">
+
+    <mat-card>
+
+      <mat-card-header>
+        <mat-card-title style="width:100% ; margin: 20px; margin-left: 30px;">Añadir un nuevo Producto</mat-card-title>
+
+    </mat-card-header>
+
+             <form class="example-form" (ngSubmit)="addProducto()" [formGroup]="productoForm">
+
+              <mat-form-field class="example-full-width">
+                <mat-label>Selecciona un Laboratorio</mat-label>
+                <mat-select  formControlName="provedores_id">
+                  <mat-option>Selecciona una línea de producto</mat-option>
+                  <mat-option *ngFor="let provedor of provedores" value="{{provedor.id}}">{{provedor.nombre}}</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" >
+                <mat-label>Código</mat-label>
+                <input  type="text" matInput formControlName="referencia" [matAutocomplete]="auto" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let productoMistral of filteredOption | async" [value]="productoMistral.referencia">
+                    {{productoMistral.referencia}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="f.referencia.invalid">Debes ingresar un código correcto</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" >
+                <mat-label>Descripción</mat-label>
+                <input  type="text" matInput formControlName="descripcion" [matAutocomplete]="autoDescripcion" required>
+                <mat-autocomplete #autoDescripcion="matAutocomplete">
+                  <mat-option *ngFor="let productoMistralDescripcion of filteredOptiondescripcion | async" [value]="productoMistralDescripcion.descripcion">
+                    {{productoMistralDescripcion.descripcion}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="f.referencia.invalid">Debes ingresar un código correcto</mat-error>
+              </mat-form-field>
+
+
+
+
+            <button mat-button mat-flat-button color="primary" style="display: block; width: 100%; margin-top: 15px;" [hidden]="visionEnviar">Enviar</button>
+
+
+            </form>
+
+            <button mat-button mat-flat-button color="primary" style="display: block; width: 100%; margin-top: 15px;" (click)="updateProducto()" [hidden]="visionAct">Actualizar</button>
+
+
+    </mat-card>
+  </div>
+
+  <div class="col-md-8">
+
+    <mat-form-field appearance="standard" style="width:100% ;">
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Ena.." #input>
+    </mat-form-field>
+
+<div class="mat-elevation-z8">
+
+    <table mat-table [dataSource]="productos" matSort>
+
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="fechaEntrada">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Entrada </th>
+              <td mat-cell *matCellDef="let element"> {{element.fechaEntrada | date}} </td>
+            </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="referencia">
+        <th mat-header-cell *matHeaderCellDef> Código </th>
+        <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{element.descripcion}}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+        <td mat-cell *matCellDef="let element">{{element.cantidad}}</td>
+
+      </ng-container>
+
+
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary" (click)="editarProducto(element)"><mat-icon>edit</mat-icon></button>
+
+ </td>
+
+      </ng-container>
+
+      <ng-container matColumnDef="disclaimer">
+        <td mat-footer-cell *matFooterCellDef colspan="5">
+          <button mat-icon-button (click)="getProductosExcel()" color="primary" class="icono"><mat-icon>download</mat-icon>Descargar</button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-footer-row *matFooterRowDef="['disclaimer']"></tr>
+
+
+    </table>
+
+    <mat-paginator #productoPaginator [pageSizeOptions]="[10, 20]"
+    showFirstLastButtons
+    aria-label="Selecciona la página">
+</mat-paginator>
+</div>
+  </div>
+
+
+
+</div>
+
+
+
+
+

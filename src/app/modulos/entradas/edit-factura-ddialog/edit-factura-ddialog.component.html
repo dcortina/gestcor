@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>Editar Entrada</h1>
+<div mat-dialog-content>
+  <form class="example-form" [formGroup]="entradaForm">
+    <mat-form-field class="example-full-width" >
+      <mat-label>Número de Factura</mat-label>
+      <input matInput formControlName="noFactura" required>
+      <mat-error *ngIf="f.noFactura.invalid">Debes ingresar un número de factura</mat-error>
+    </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Fecha de Llegada</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="fechaLlegada" required >
+    <mat-hint>D/M/A</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="f.fechaLlegada.invalid">Debes ingresar una fecha correcta</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Selecciona un Laboratorio</mat-label>
+    <mat-select  formControlName="provedores_id">
+
+      <mat-option *ngFor="let provedor of provedores" value="{{provedor.id}}">{{provedor.nombre}}</mat-option>
+
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Observaciónes</mat-label>
+    <textarea matInput placeholder="Ej. El provedor..." formControlName="observaciones"></textarea>
+  </mat-form-field>
+
+
+  </form>
+</div>
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+  <button mat-raised-button color="primary" (click)= "updateEntrada()">Actualizar</button>
+</div>

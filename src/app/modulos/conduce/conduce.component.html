@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col"><button mat-raised-button color="warn" (click)="openDialog()">Añadir Conduce</button></div>
+  </div>
+
+  <div class="row">
+    <div>
+
+      <mat-form-field appearance="standard" style="width:100% ;">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="conduce" matSort>
+
+        <ng-container matColumnDef="fechaCreado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha del Conduce </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaCreado | date}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="consecutivo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> # Concecutivo</th>
+          <td mat-cell *matCellDef="let element"> {{element.consecutivo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="motivoConduce">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Motivo del Conduce </th>
+          <td mat-cell *matCellDef="let element"> {{element.motivoConduce}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="destino">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Destino </th>
+          <td mat-cell *matCellDef="let element"> {{element.destino}} </td>
+        </ng-container>
+
+                <ng-container matColumnDef="codeEntidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Codigo Entidad </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.codeEntidad}} </td>
+        </ng-container>
+
+                        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+          <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lugarEntrega">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Lugar de Entrega </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.lugarEntrega}} </td>
+        </ng-container>
+
+                <ng-container matColumnDef="fechaTransporte">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de Transportación </th>
+          <td mat-cell *matCellDef="let element" > {{element.fechaTransporte | date}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="chofer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Chofer </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.chofer}} </td>
+        </ng-container>
+
+                <ng-container matColumnDef="carnetChofer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Carnet </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.carnetChofer}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Elaborado Por </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="carnet">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Carnet </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.carnet}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cargo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Cargo </th>
+          <td mat-cell *matCellDef="let element"hidden> {{element.cargo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="recibe">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Recibe </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.recibe}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="recibeCarnet">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Carnet </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.recibeCarnet}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="recibeCargo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header hidden> Cargo </th>
+          <td mat-cell *matCellDef="let element" hidden> {{element.recibeCargo}} </td>
+        </ng-container>
+
+          <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef> Editar </th>
+          <td mat-cell *matCellDef="let element"> <button mat-icon-button color="primary" (click)="editarEntrada(element)"><mat-icon>edit</mat-icon></button> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pdf">
+          <th mat-header-cell *matHeaderCellDef> Imprimir </th>
+          <td mat-cell *matCellDef="let element">
+            <app-conduce-pdf [fecha]="element.fechaTransporte" [consecutivo]="element.consecutivo" [facturado]="element.destino" [elaborado]="element.name"
+             [elaboradoCarnet]="element.carnet" [elaboradoCargo]="element.cargo"
+              [lugarEntrega]="element.lugarEntrega" [direccion]="element.direccion" [chofer]="element.chofer" [choferCarnet]="element.carnetChofer"
+              [recibe]="element.recibe" [recibeCarnet]="element.recibeCarnet" [recibeCargo]="element.recibeCargo" [codeEntidad]="element.codeEntidad" >
+            </app-conduce-pdf>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="disclaimer">
+          <td mat-footer-cell *matFooterCellDef colspan="5">
+            <button mat-icon-button (click)="getProductosExcel()" color="primary" class="icono"><mat-icon>download</mat-icon>Descargar</button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="['disclaimer']"></tr>
+      </table>
+
+      <mat-paginator #provedorPaginator [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Selecciona la página">
+  </mat-paginator>
+  </div>
+    </div>
+
+  </div>

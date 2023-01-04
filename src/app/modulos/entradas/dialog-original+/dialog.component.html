@@ -1,0 +1,112 @@
+<h1 mat-dialog-title>Añadir Entrada</h1>
+<div mat-dialog-content>
+
+  <form class="example-form" [formGroup]="myForm" *ngIf="isReady">
+
+    <mat-form-field class="example-full-width" >
+      <mat-label>Número de Factura</mat-label>
+      <input  type="text" matInput formControlName="noFactura" [(ngModel)]="factura" [matAutocomplete]="auto" required>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let factura of filteredOption | async" [value]="factura.noFactura">
+          {{factura.noFactura}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+	<button mat-icon-button color="primary" type="button" title="delete item" [disabled]="botonAgregar" (click)="facturaPendiente()">
+		<mat-icon>search</mat-icon>Agregar Factura
+	  </button>
+
+
+ 	  <mat-form-field class="example-full-width">
+		<mat-label>Fecha de Llegada</mat-label>
+		<input matInput [matDatepicker]="picker" formControlName="fechaLlegada" required >
+		<mat-hint>D/M/A</mat-hint>
+		<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		<mat-datepicker #picker></mat-datepicker>
+	  </mat-form-field>
+
+	  <mat-form-field class="example-full-width">
+		<mat-label>Selecciona un Laboratorio</mat-label>
+		<mat-select formControlName="provedores">
+	 <mat-option *ngFor="let provedor of provedores" value="{{provedor.id}}">{{provedor.nombre}}</mat-option>
+	    </mat-select>
+	  </mat-form-field>
+
+	  <button mat-raised-button color="primary" [disabled]="botonAgregar" (click)="addNewItem()">Agregar Producto</button>
+
+	  <div formArrayName="items" style="margin-top: 15px ;" *ngFor="let item of myForm.get('items')['controls']; let i = index">
+		<div [formGroupName]="i">
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Código</mat-label>
+				<input type="text"  aria-label="codigo" matInput formControlName = "product" [matAutocomplete]="auto">
+				<mat-autocomplete #auto="matAutocomplete">
+					<mat-option *ngFor="let option of filteredOptions[i] | async" [value]="option.referencia">
+						{{option.referencia}}--{{option.descripcion}}
+					</mat-option>
+				</mat-autocomplete>
+			</mat-form-field>
+
+			<mat-form-field>
+				<mat-label>Lote del Producto</mat-label>
+          <input matInput formControlName="lote" required>
+			</mat-form-field>
+
+			<div class="example-container">
+				<mat-form-field style="width:49% ;">
+				  <mat-label>Fecha de Fabricación</mat-label>
+				  <input matInput [matDatepicker]="picker1" formControlName="fechaFabricacion" required>
+				  <mat-hint>D/M/A</mat-hint>
+				  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+				  <mat-datepicker #picker1></mat-datepicker>
+				</mat-form-field>
+		
+				<mat-form-field style="width:49% ;">
+				  <mat-label>Fecha de Vencimiento</mat-label>
+				  <input matInput [matDatepicker]="picker" formControlName="fechaVence">
+				  <mat-hint>D/M/A</mat-hint>
+				  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				  <mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+			  </div>
+
+			  <div class="example-container">
+				<mat-form-field style="width:49% ;">
+				  <mat-label>Cantidad</mat-label>
+				  <input matInput type="number" formControlName="cantidad" required>
+				</mat-form-field>
+	  
+				<mat-form-field style="width:49% ;">
+				  <mat-label>Cantidad de Bultos</mat-label>
+				  <input matInput formControlName="cantBultos" required>
+				</mat-form-field>
+			  </div>
+	  
+
+
+<button mat-icon-button color="primary" type="button" title="delete item" (click)="removeItem(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+				<hr>
+			</div>
+			</div>
+
+			<mat-form-field class="example-full-width">
+				<mat-label>Observaciónes</mat-label>
+				<textarea matInput placeholder="Ej. El provedor..." formControlName="observaciones"></textarea>
+			  </mat-form-field>
+	
+
+
+
+</form>
+
+</div>
+
+
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" mat-dialog-close>Cerrar</button>
+  <button mat-raised-button color="primary" (click)= "enviarEntrada()">Enviar</button>
+</div>
+

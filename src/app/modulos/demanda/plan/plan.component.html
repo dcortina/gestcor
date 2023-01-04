@@ -1,0 +1,68 @@
+
+<div class="row mb-5">
+<!-- Upload  -->
+
+
+
+<form id="file-upload-form" class="uploader">
+ 
+  <input id="file-upload" type="file" name="fileUpload" (change)="fileUpload($event)" accept=".xls,.xlsx" />
+
+  <label for="file-upload" id="file-drag">
+    <img id="file-image" src="#" alt="Preview" class="hidden">
+    <div id="start">
+      <i class="fa fa-download" aria-hidden="true"></i>
+      <div>Selecciona el archivo</div>
+      <div id="notimage" class="hidden">Por favor seleciona un documento</div>
+      <span id="file-upload-btn" class="btn btn-primary">Seleciona el documento</span>
+    </div>
+    <div id="response" class="hidden">
+      <div id="messages"></div>
+      <progress class="progress" id="file-progress" value="0">
+        <span>0</span>%
+      </progress>
+    </div>
+    
+  </label>
+</form>
+
+<template>
+     
+<h1></h1>
+</template>
+
+</div>
+
+
+
+<div class="row">
+
+<div class="botones">
+
+  
+  <button mat-raised-button (click)="addData()" [disabled]="oculto">Añadir Plan</button>
+  <button mat-raised-button (click)="clearTable()" [disabled]="oculto">Borrar Plan</button>
+  <button mat-raised-button color="warn" (click)="enviarData()" [hidden]="oculto">Guardar Plan</button>
+  
+</div>
+
+<wrapper-table [dataSource]="dataSource" [columns]="displayedColumns"
+               matSort #sort="matSort">
+  <!-- Custom column definition to be provided to the wrapper table. -->
+  <ng-container matColumnDef="referencia">
+    <th mat-header-cell *matHeaderCellDef> Codigo </th>
+    <td mat-cell *matCellDef="let element"> {{element.referencia}} </td>
+  </ng-container>
+
+  <!-- Custom row definitions to be provided to the wrapper table. -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <!-- Row shown when there is no matching data that will be provided to the wrapper table. -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">Sin Datos</td>
+  </tr>
+</wrapper-table>
+</div>
+
+{{accionBotones()}}
